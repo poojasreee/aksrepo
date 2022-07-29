@@ -1,11 +1,14 @@
-# base image - nginx with tag "latest"
 FROM nginx:latest
+#FROM nginx:1.12-alpine
 
-# Adding custom index.html hosted on Github Gist
-ADD https://github.com/poojasreee/aksrepo/blob/main/index.html /usr/share/nginx/html/
+# Copy the tagged files from the build to the production environmnet of the nginx server
+COPY https://github.com/poojasreee/aksrepo/blob/main/index.html /usr/share/nginx/html
 
 # Adding read permissions to custom index.html
 RUN chmod +r /usr/share/nginx/html/index.html
 
-# 'nginx -g daemon off" will run as default command when any container is run that uses the image that was built using this Dockerfile"
+# Make port 80 available to the world outside the container
+EXPOSE 80
+
+# Run the nginx serverdocker 
 CMD ["nginx", "-g", "daemon off;"]
