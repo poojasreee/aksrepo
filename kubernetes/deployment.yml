@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: samplerepo
 spec:
-  replicas: 1
+  replicas: #replicaNo#
   selector:
     matchLabels:
       app: samplerepo
@@ -11,7 +11,7 @@ spec:
     metadata:
       labels:
         app: samplerepo
-    specs
+    spec:
       containers:
         - name: samplerepo
           image: acrconnection.azurecr.io/samplerepo
