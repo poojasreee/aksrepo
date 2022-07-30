@@ -1,19 +1,19 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: samplerepo
+  name: nginx
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: samplerepo
+      app: nginx
   template:
     metadata:
       labels:
-        app: samplerepo
+        app: nginx
     spec:
       containers:
-        - name: samplerepo
-          image: acrconnection.azurecr.io/samplerepo
+        - name: nginx
+          image: acrconnection.azurecr.io/nginx
           ports:
           - containerPort: 80
