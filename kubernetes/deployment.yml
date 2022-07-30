@@ -12,6 +12,9 @@ spec:
       labels:
         app: samplerepo
     spec:
+      imagePullSecrets:
+        - name: acrconnectionauth
+    spec:
       containers:
         - name: samplerepo
           image: acrconnection.azurecr.io/samplerepo
