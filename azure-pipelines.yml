@@ -61,6 +61,7 @@ stages:
     - task: KubernetesManifest@0
       inputs:
         action: 'deploy'
+        kubernetesServiceConnection: 'AKSdeploy'
         namespace: 'default'
         manifests: |
           $(Pipeline.Workspace)/manifests/deployment.yml
