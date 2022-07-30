@@ -38,6 +38,7 @@ stages:
   dependsOn: Build
   variables:
     acrsecret: acrconnectionauth
+    acrdevurl: 'acrconnection.azurecr.io'
   jobs:
   - deployment: Deploy
     displayName: Deploy to AKS
@@ -60,10 +61,13 @@ stages:
               secretType: 'dockerRegistry'
               secretName: '$(acrsecret)'
               dockerRegistryEndpoint: 'acrconnection'
+
           - task: KubernetesManifest@0
             inputs:
-              action: 'deploy'
-              namespace: 'default'
-              manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+             action: 'deploy'
+             namespace: 'default'
+             manifests: |
+               $(Pipeline.Workspace)/manifests/deployment.yml
+               $(Pipeline.Workspace)/manifests/service.yml
+             containers: '$(acrdevurl)/$(imageRepo):$(tag)'
+             imagePullSecrets: '$(acrsecret)'
