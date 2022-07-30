@@ -5,7 +5,7 @@ FROM nginx:latest
 COPY index.html /usr/share/nginx/html
 
 # Adding read permissions to custom index.html
-RUN chmod +r /usr/share/nginx/html/index.html
+RUN chmod 777 /usr/share/nginx/html/index.html
 
 # Make port 80 available to the world outside the container
 EXPOSE 80
