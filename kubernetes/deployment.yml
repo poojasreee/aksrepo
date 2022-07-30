@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: samplerepo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: samplerepo
+  template:
+    metadata:
+      labels:
+        app: samplerepo
+    specs
+      containers:
+        - name: samplerepo
+          image: acrconnection.azurecr.io/samplerepo
+          ports:
+          - containerPort: 80
